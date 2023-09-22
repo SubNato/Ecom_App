@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "19047311850",
+    "project_id": "ecomm-app-39549",
+    "storage_bucket": "ecomm-app-39549.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:19047311850:android:8d2e6109ab97dd47a5aa93",
+        "android_client_info": {
+          "package_name": "com.tmindustry.ecom_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCotIdArg-T1mu9pjzhTAM2zgsN86aRGkw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
