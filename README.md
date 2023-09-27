@@ -113,4 +113,3 @@ command 'git checkout' 'with the id/hash' is used to jump to the previous code y
 command 'git revert' is used to revert to the last commit, or a commit made previously on github after you committed another change to a specific github repository.
 command 'git stash' can be used to store your current work (not a commit, nor on the main branch), so that it won't get lost.
 THESE LISTED ABOVE can be done in both the TERMINAL and in ANDROID STUDIO GUI.
-  
