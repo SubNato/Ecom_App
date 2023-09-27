@@ -115,3 +115,9 @@ class MyHomePage extends StatelessWidget {
     );
   }
 }
+
+//void onCreate(){
+  //super.onCreate();
+
+  //MultiDex.install(getBaseContext());
+//}
