@@ -10,12 +10,12 @@ class SignInBloc extends Bloc<SignInEvent, SignInState>{
   }
 
   void _emailEvent(EmailEvent event, Emitter<SignInState>emit){
-    print("My email is ${event.email}");
+    //print("My email is ${event.email}");
     emit(state.copyWith(email: event.email));
   }
 
   void _passwordEvent(PasswordEvent event, Emitter<SignInState>emit){
-    print("My Password is ${event.password}");          //So as you would type in either fields (email or password) an event would get triggered. (kind of like a stack, adding one letter at a time.)
+    //print("My Password is ${event.password}");          //So as you would type in either fields (email or password) an event would get triggered. (kind of like a stack, adding one letter at a time.)
     emit(state.copyWith(password: event.password));
   }
 }
