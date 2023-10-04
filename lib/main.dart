@@ -1,6 +1,7 @@
 import 'package:ecom_app/app_blocs.dart';
 import 'package:ecom_app/app_events.dart';
 import 'package:ecom_app/app_states.dart';
+import 'package:ecom_app/pages/application/application_page.dart';
 import 'package:ecom_app/pages/bloc_providers.dart';
 import 'package:ecom_app/pages/register/register.dart';
 import 'package:ecom_app/pages/sign_in/bloc/sign_in_blocs.dart';
@@ -43,9 +44,9 @@ class MyApp extends StatelessWidget {
                   color: AppColors.primaryText      //This is to set the color of the back button on the AppBar. It si there by default in the color white (the main color of the AppBar).
                 ),
                   elevation: 0, backgroundColor: Colors.white)),
-          home: const Welcome(),
+          home: const ApplicationPage(),
           routes: {
-            "myHomePage": (context) => const MyHomePage(),
+            //"myHomePage": (context) => const MyHomePage(),
             "signIn": (context) => const SignIn(),
             "register": (context)=>const Register()
           },
@@ -54,57 +55,6 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Flutter Demo Home Page"),
-      ),
-      body: Center(child: BlocBuilder<AppBlocs, AppStates>(
-        builder: (context, state) {
-          return Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              const Text(
-                'You have pushed the button this many times:',
-              ),
-              Text(
-                "${BlocProvider.of<AppBlocs>(context).state.counter}",
-                style: Theme.of(context).textTheme.headlineMedium,
-              ),
-            ],
-          );
-        },
-      )),
-
-      floatingActionButton: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          FloatingActionButton(
-            heroTag: "heroTag1",
-            //Hero Tags are used to identify between the different FloatingActionButtons!
-            onPressed: () =>
-                BlocProvider.of<AppBlocs>(context).add(Increment()),
-            tooltip: 'Increment',
-            child: const Icon(Icons.add),
-          ),
-          FloatingActionButton(
-            heroTag: "heroTag2", //Explanation listed above!
-            onPressed: () =>
-                BlocProvider.of<AppBlocs>(context).add(Decrement()),
-            tooltip: 'Decrement',
-            child: const Icon(Icons.remove),
-          )
-        ],
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
-  }
-}
-
 //void onCreate(){
 //super.onCreate();
 

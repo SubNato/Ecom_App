@@ -8,9 +8,9 @@ class RegisterStates {
       {this.userName = "",
       this.email = "",
       this.password = "",
-      this.rePassword = ""}); //'{}' - Denotes optional.
+      this.rePassword = ""}); //'{}' - Denotes optional. And also note, '[]' denotes positional parameters.
 
-  RegisterStates copyWith(
+  RegisterStates copyWith(          //This copyWith method is really useful!
       { //Method to return the object.
       String? userName,
       String? email,

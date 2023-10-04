@@ -11,15 +11,19 @@ class RegisterBlocs extends Bloc<RegisterEvent, RegisterStates>{
   }
 
   void _userNameEvent(UserNameEvent event, Emitter<RegisterStates> emit){
+     print("Username: ${event.userName}");    //These are to check to see what values are being entered into the system. To really see if it works.
     emit(state.copyWith(userName:event.userName));
   }
   void _emailEvent(EmailEvent event, Emitter<RegisterStates> emit){
+    print("Email: ${event.email}");
     emit(state.copyWith(email:event.email));
   }
   void _passwordEvent(PasswordEvent event, Emitter<RegisterStates> emit){
+    print("Password: ${event.password}");
     emit(state.copyWith(password:event.password));
   }
   void _rePasswordEvent(RePasswordEvent event, Emitter<RegisterStates> emit){
+    print("Password Confirmed: ${event.rePassword}");
     emit(state.copyWith(rePassword:event.rePassword));
   }
 }
