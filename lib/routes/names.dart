@@ -8,3 +8,5 @@ class AppRoutes{
   //register page
   static const REGISTER = "/register";
 }
+
+//Make sure the naming convention above is followed all across the codes. As if it is NOT as shown above, you will get an invalid route.

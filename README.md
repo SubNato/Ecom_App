@@ -106,6 +106,17 @@ In this case DOWNGRADE to the 7.4.2 option and the error is solved.
 FYI, sorry for the lengthy fix. It took me a while to solve it, and this is a summary of what transpired! Later for now.
 
 
+New Error:
+
+-type 'Null' is not a subtype of type 'SingleChildWidget'
+
+Fix:
+
+Usually a return statement is left out, search for that. In this case I left the application route uncommented with the application route bloc not started. There was no bloc to return so an error was thrown. Comment it out if you have something like that.
+
+
+
+
 - As the project builds further, more wil be added to this file to help understand, and to solve any errors anyone using/building this code may face.
 
 Hope this helps!
