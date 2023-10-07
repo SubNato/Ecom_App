@@ -49,7 +49,7 @@ class SignInController {
           var user = credential.user;
           if(user!=null){
             print("User Exists");
-
+            Navigator.of(context).pushNamedAndRemoveUntil("/application", (route) => false);
             //we got verified user from firebase
           }else{
             toastInfo(msg: "Currently User does not exist");
