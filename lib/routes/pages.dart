@@ -12,6 +12,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../global.dart';
 import 'names.dart';
 
 
@@ -54,14 +55,25 @@ class AppPages{
   static MaterialPageRoute GenerateRouteSettings(RouteSettings settings){
     if(settings.name!=null){
       //This checks to see if the route name matches any of the above when the navigator is used. So it would grab one of the above routes and call (or use) it.
+
       var result = routes().where((element) => element.route==settings.name);
       if(result.isNotEmpty){
-        print("Valid route name ${settings.name}");
+
+        bool deviceFirstOpen = Global.storageService.getDeviceFirstOpen();
+        if(result.first.route==AppRoutes.INITIAL&&deviceFirstOpen){   //Here we use the variable to check if they have used the app before, if yes it becomes true, and the initial welcome page is skipped and you are redirected to the sign up page. Now here is a great place to do any redirection, for instance if they have already signed in, they don't have to sign in again, simply redirect them!
+
+          bool isLoggedin = Global.storageService.getIsLoggedIn();
+          if(isLoggedin){
+            return MaterialPageRoute(builder: (_)=>const ApplicationPage(), settings: settings);
+          }
+
+          return MaterialPageRoute(builder: (_)=>const SignIn(), settings:settings);
+        }
         return MaterialPageRoute(builder: (_)=>result.first.page, settings: settings);      //Why like this? Because it would return many results, and we want the first one, so result.first then we want the widget page (as we defined it in the class below) so we then return praise be to God, result.first.page! Hope this helps!
       }
 
     }
-    print("Invalid route name ${settings.name}");
+    //print("Invalid route name ${settings.name}");
     return MaterialPageRoute(builder: (_)=>const SignIn(), settings: settings);
   }
 

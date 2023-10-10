@@ -6,15 +6,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:firebase_core/firebase_core.dart';
 
-import 'entities/values/colors.dart'; //Remember to put the dependency classpath above the others in android gradle build.
+import 'entities/values/colors.dart';
+import 'global.dart'; //Remember to put the dependency classpath above the others in android gradle build.
 
 Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  //To test Firebase Connection
-  await Firebase.initializeApp(
-      //Error appeared. The fix was to add the import of Firebase manually.
-      //options: DefaultFirebaseOptions.currentPlatform,
-      );
+  await Global.init();
   runApp(const MyApp());
 }
 
