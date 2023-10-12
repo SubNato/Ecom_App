@@ -36,7 +36,7 @@ class _RegisterState extends State<Register> {
                   Center(
                       child: reusableText("Enter your details below for free sign up!")),
                   Container(
-                    margin: EdgeInsets.only(top: 36.h),
+                    margin: EdgeInsets.only(top: 60.h),
                     padding: EdgeInsets.only(left: 25.w, right: 25.w),
                     child: Column(
                       //To get the words on the screen! In and above the text box.
@@ -71,7 +71,7 @@ class _RegisterState extends State<Register> {
                   ),
                   Container(
                     margin: EdgeInsets.only(left: 25.w),
-                    child: reusableText("By creating an account you have to agree"),
+                    child: reusableText("By creating an account you have to agree to our terms and conditions."),
                   ),
                   buildLoginAndRegButton("Sign Up", "login", () {       //If the login in condition is true then the button color is blue!  So it is only to get the button color.
                     //Navigator.of(context).pushNamed("register");
