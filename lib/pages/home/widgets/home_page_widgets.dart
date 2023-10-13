@@ -1,6 +1,10 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:ecom_app/entities/values/colors.dart';
+import 'package:ecom_app/pages/home/bloc/home_page_blocs.dart';
+import 'package:ecom_app/pages/home/bloc/home_page_events.dart';
+import 'package:ecom_app/pages/home/bloc/home_page_states.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 AppBar buildAppBar() {
@@ -110,7 +114,7 @@ Widget searchView() {
 }
 
 //For the slider view
-Widget slidersView(){
+Widget slidersView(BuildContext context, HomePageStates states){
     return Column(
       children: [
         Container(
@@ -118,6 +122,10 @@ Widget slidersView(){
           width: 325.w,
           height: 160.h,
           child: PageView(
+            onPageChanged: (value){
+              print(value.toString());
+              context.read<HomePageBlocs>().add(HomePageDots(value));
+            },
             children: [
               _slidersContainer(),
               _slidersContainer(path: "assets/icons/image_1.png"),
@@ -128,7 +136,7 @@ Widget slidersView(){
         Container(
           child: DotsIndicator(
             dotsCount: 3,
-            position: 1,     //Make this dynamic. Do this with Bloc.
+            position: states.index,     //Make this dynamic. Do this with Bloc.
             decorator: DotsDecorator(
               color: AppColors.primaryThirdElementText,
               activeColor: AppColors.primaryElement,
@@ -156,5 +164,64 @@ Widget _slidersContainer({String path= "assets/icons/art.png"}){
             image: AssetImage(path)
         )
     ),
+  );
+}
+
+//Menu view for showing items.
+Widget menuView(){
+  return Column(
+    children: [
+    Container(
+      width: 325.w,
+      margin: EdgeInsets.only(top: 15.h),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+         crossAxisAlignment: CrossAxisAlignment.end,
+         children: [
+           _reusableText("Choose your course"),
+           GestureDetector(child: _reusableText("See all", color: AppColors.primaryThirdElementText, fontSize: 10))
+         ],
+      )
+    ),
+      Container(
+        margin: EdgeInsets.only(top: 20.w),
+        child: Row(
+          children: [
+            _reusableMenuText("All"),
+            _reusableMenuText("Popular"),
+            _reusableMenuText("Newest"),
+          ],
+        ),
+      )
+    ],
+  );
+}
+
+Widget _reusableText(String text, {Color color=AppColors.primaryText, int fontSize = 16, FontWeight fontWeight=FontWeight.bold}){
+  return Container(
+    child: Text(
+      text,
+      style: TextStyle(
+          color: color,
+          fontWeight: fontWeight,
+          fontSize: fontSize.sp
+      ),
+    ),
+  );
+}
+
+//For the menu buttons, reusable text
+Widget _reusableMenuText(String menuText, {Color textColor= AppColors.primaryElementText}){
+  return Container(
+    margin: EdgeInsets.only(right: 20.w),
+    decoration: BoxDecoration(
+        color: AppColors.primaryElement,
+        borderRadius: BorderRadius.circular(7.w),
+        border: Border.all(color: AppColors.primaryElement)
+    ),
+    padding: EdgeInsets.only(
+        left: 15.w, right: 15.w, top: 5.h, bottom: 5.h
+    ),
+    child: _reusableText(menuText, color: AppColors.primaryElementText, fontWeight: FontWeight.normal, fontSize: 11),
   );
 }

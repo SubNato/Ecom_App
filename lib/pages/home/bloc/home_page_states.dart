@@ -9,5 +9,4 @@ class HomePageStates{
       index: index??this.index
     );
   }
-
 }
