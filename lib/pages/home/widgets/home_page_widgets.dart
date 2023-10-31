@@ -188,8 +188,8 @@ Widget menuView(){
         child: Row(
           children: [
             _reusableMenuText("All"),
-            _reusableMenuText("Popular"),
-            _reusableMenuText("Newest"),
+            _reusableMenuText("Popular",textColor: AppColors.primaryThirdElementText, backGroundColor: Colors.white),
+            _reusableMenuText("Newest", textColor: AppColors.primaryThirdElementText, backGroundColor: Colors.white),
           ],
         ),
       )
@@ -198,30 +198,75 @@ Widget menuView(){
 }
 
 Widget _reusableText(String text, {Color color=AppColors.primaryText, int fontSize = 16, FontWeight fontWeight=FontWeight.bold}){
-  return Container(
-    child: Text(
-      text,
-      style: TextStyle(
-          color: color,
-          fontWeight: fontWeight,
-          fontSize: fontSize.sp
-      ),
+  return Text(
+    text,
+    style: TextStyle(
+        color: color,
+        fontWeight: fontWeight,
+        fontSize: fontSize.sp
     ),
   );
 }
 
 //For the menu buttons, reusable text
-Widget _reusableMenuText(String menuText, {Color textColor= AppColors.primaryElementText}){
+Widget _reusableMenuText(String menuText, {Color textColor= AppColors.primaryElementText, Color backGroundColor = AppColors.primaryElement}){
   return Container(
     margin: EdgeInsets.only(right: 20.w),
     decoration: BoxDecoration(
-        color: AppColors.primaryElement,
+        color: backGroundColor,
         borderRadius: BorderRadius.circular(7.w),
-        border: Border.all(color: AppColors.primaryElement)
+        border: Border.all(color: backGroundColor)
     ),
     padding: EdgeInsets.only(
         left: 15.w, right: 15.w, top: 5.h, bottom: 5.h
     ),
-    child: _reusableText(menuText, color: AppColors.primaryElementText, fontWeight: FontWeight.normal, fontSize: 11),
+    child: _reusableText(menuText, color: textColor, fontWeight: FontWeight.normal, fontSize: 11),
+  );
+}
+
+//For course grid view ui
+Widget courseGrid(){
+  return Container(
+    padding: EdgeInsets.all(12.w),
+    decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(15.w),
+        image: const DecorationImage(
+            fit: BoxFit.fill,
+            image: AssetImage(
+                "assets/icons/image_2.png"
+            )
+        )
+    ),
+    child: Column(                  //For the text in the image coming from the network backend.
+      mainAxisAlignment: MainAxisAlignment.end,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          "Best course for IT and Engineering",
+          maxLines: 1,
+          overflow: TextOverflow.fade,
+          textAlign: TextAlign.left,
+          softWrap: false,
+          style: TextStyle(
+            color: AppColors.primaryElementText,
+            fontWeight: FontWeight.bold,
+            fontSize: 11.sp,
+          ),
+        ),
+        SizedBox(height: 5.h,),
+        Text(
+          "Best flutter course!",
+          maxLines: 1,
+          overflow: TextOverflow.fade,
+          textAlign: TextAlign.left,
+          softWrap: false,
+          style: TextStyle(
+            color: AppColors.primaryFourthElementText,
+            fontWeight: FontWeight.normal,
+            fontSize: 8.sp,
+          ),
+        )
+      ],
+    ),
   );
 }
