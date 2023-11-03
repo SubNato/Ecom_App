@@ -24,4 +24,8 @@ bool getIsLoggedIn(){
     return _prefs.getString(AppConstants.STORAGE_USER_TOKEN_KEY)==null?false:true;
 }     //To retrieve string
 
+
+Future<bool> remove(String key){
+    return _prefs.remove(key);
+}
 }

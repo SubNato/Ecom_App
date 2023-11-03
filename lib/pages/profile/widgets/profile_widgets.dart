@@ -1,4 +1,6 @@
 import 'package:ecom_app/entities/values/colors.dart';
+import 'package:ecom_app/routes/names.dart';
+import 'package:ecom_app/widgets/base_text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -13,14 +15,7 @@ AppBar buildAppbar(){
             height: 12.h,
             child: Image.asset("assets/icons/menu.png"),
           ),
-          Text(
-            "Profile",
-            style: TextStyle(
-              color: AppColors.primaryText,
-              fontWeight: FontWeight.bold,
-              fontSize: 16.sp
-            )
-          ),
+          reusableText("Profile"),
           SizedBox(
             width: 24.w,
             height: 24.h,
@@ -63,10 +58,11 @@ var imagesInfo =<String, String>{     //Mapping. Makes it easier, and you don't 
   "Reminders":"cube.png"
 };     //It adds them dynamically, in a KEY: VALUE FORMAT. Add it below in that FORMAT as well, or it won't work.
 
-Widget buildListView(){
+Widget buildListView(BuildContext context){
   return Column(
     children: [      //Spread Operator:
       ...List.generate(imagesInfo.length, (index) => GestureDetector(
+        onTap: ()=>Navigator.of(context).pushNamed(AppRoutes.SETTINGS),     // ()=> is the same as (){ }.
         child: Container(
           margin: EdgeInsets.only(bottom: 15.h),
           child: Row(
