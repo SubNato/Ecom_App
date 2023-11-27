@@ -1,5 +1,6 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:ecom_app/entities/values/colors.dart';
+import 'package:ecom_app/entities/values/constant.dart';
 import 'package:ecom_app/pages/home/bloc/home_page_blocs.dart';
 import 'package:ecom_app/pages/home/bloc/home_page_events.dart';
 import 'package:ecom_app/pages/home/bloc/home_page_states.dart';
@@ -9,7 +10,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../widgets/base_text_widget.dart';
 
-AppBar buildAppBar() {
+AppBar buildAppBar(String avatar) {
   return AppBar(
     title: Container(
       margin: EdgeInsets.only(left: 7.w, right: 7.w),
@@ -26,9 +27,9 @@ AppBar buildAppBar() {
             child: Container(
               width: 40.w,
               height: 40.h,
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                   image: DecorationImage(
-                      image: AssetImage("assets/icons/person.png"))),
+                      image: NetworkImage("${AppConstants.SERVER_API_URL}$avatar"))),
             ),
           )
         ],

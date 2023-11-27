@@ -161,3 +161,14 @@ command 'git revert' is used to revert to the last commit, or a commit made prev
 command 'git stash' can be used to store your current work (not a commit, nor on the main branch), so that it won't get lost.
 
 THESE LISTED ABOVE can be done in both the TERMINAL and in ANDROID STUDIO GUI.
+
+
+
+
+Backend Usage:
+
+laravel-admin.org/docs/en
+
+php artisan serve : "Is used to start the laravel server."
+
+Learn more about it!   (Laravel and APIs).

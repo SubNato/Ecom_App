@@ -1,4 +1,8 @@
+import 'dart:convert';
+
+import 'package:ecom_app/entities/entities.dart';
 import 'package:ecom_app/entities/values/constant.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class StorageService{
@@ -28,4 +32,19 @@ bool getIsLoggedIn(){
 Future<bool> remove(String key){
     return _prefs.remove(key);
 }
+
+String getUserToken(){
+    return _prefs.getString(AppConstants.STORAGE_USER_TOKEN_KEY) ?? "";
+}
+
+
+UserItem? getUserProfile(){
+
+    var profileOffline = _prefs.getString(AppConstants.STORAGE_USER_PROFILE_KEY) ??"";
+    if(profileOffline.isNotEmpty){       //'fromJson' changes the Json data into an object!
+      return UserItem.fromJson(jsonDecode(profileOffline));
+    }     //jsonDecode changes a String (or whatever is being given to it), to Json format for the use that it is needed for.
+    return null;
+  }
+
 }
