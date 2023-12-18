@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:ecom_app/entities/values/constant.dart';
+import 'package:ecom_app/global.dart';
 
 class HttpUtil {
   static final HttpUtil _instance = HttpUtil._internal();
@@ -21,9 +22,27 @@ class HttpUtil {
   }
 
   Future post(String path,
-      {dynamic data, Map<String, dynamic>? queryParameters}) async {
-    var response =
-        await dio.post(path, data: data, queryParameters: queryParameters);
-    return response.data;    //This is data that is coming from the backend. It holds the data that we need to query or verify things.
+      {dynamic data,
+      Map<String, dynamic>? queryParameters,
+      Options? options}) async {
+    Options requestOptions = options ?? Options();
+    requestOptions.headers = requestOptions.headers ?? {};
+    Map<String, dynamic>? authorization = getAuthorizationHeader();
+    if (authorization != null) {
+      requestOptions.headers!.addAll(authorization);
+    }
+    var response = await dio.post(path,
+        data: data, queryParameters: queryParameters, options: requestOptions);
+    return response
+        .data; //This is data that is coming from the backend. It holds the data that we need to query or verify things.
+  }
+
+  Map<String, dynamic>? getAuthorizationHeader() {
+    var headers = <String, dynamic>{};
+    var accessToken = Global.storageService.getUserToken();
+    if (accessToken.isNotEmpty) {
+      headers['Authorization'] = 'Bearer $accessToken';
+    }
+    return headers;
   }
 }

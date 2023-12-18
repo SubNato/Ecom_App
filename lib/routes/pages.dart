@@ -2,6 +2,8 @@
 
 import 'package:ecom_app/pages/application/application_page.dart';
 import 'package:ecom_app/pages/application/bloc/app_blocs.dart';
+import 'package:ecom_app/pages/course/bloc/course_detail_blocs.dart';
+import 'package:ecom_app/pages/course/course_detail.dart';
 import 'package:ecom_app/pages/home/bloc/home_page_blocs.dart';
 import 'package:ecom_app/pages/home/home_page.dart';
 import 'package:ecom_app/pages/profile/settings/bloc/settings_blocs.dart';
@@ -52,6 +54,11 @@ class AppPages{
           route: AppRoutes.SETTINGS,
           page: const SettingsPage(),
           bloc: BlocProvider(create: (_)=>SettingsBlocs(),)
+      ),
+      PageEntity(
+          route: AppRoutes.COURSE_DETAIL,
+          page: const CourseDetail(),
+          bloc: BlocProvider(create: (_)=>CourseDetailBloc(),)
       ),
     ];
   }

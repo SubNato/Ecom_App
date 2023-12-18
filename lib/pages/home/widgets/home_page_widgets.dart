@@ -1,4 +1,5 @@
 import 'package:dots_indicator/dots_indicator.dart';
+import 'package:ecom_app/entities/course.dart';
 import 'package:ecom_app/entities/values/colors.dart';
 import 'package:ecom_app/entities/values/constant.dart';
 import 'package:ecom_app/pages/home/bloc/home_page_blocs.dart';
@@ -218,16 +219,14 @@ Widget _reusableMenuText(String menuText, {Color textColor= AppColors.primaryEle
 }
 
 //For course grid view ui
-Widget courseGrid(){
+Widget courseGrid(CourseItem item){
   return Container(
     padding: EdgeInsets.all(12.w),
     decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15.w),
-        image: const DecorationImage(
+        image: DecorationImage(
             fit: BoxFit.fill,
-            image: AssetImage(
-                "assets/icons/image_2.png"
-            )
+            image: NetworkImage(AppConstants.SERVER_UPLOADS+item.thumbnail!)
         )
     ),
     child: Column(                  //For the text in the image coming from the network backend.
@@ -235,7 +234,7 @@ Widget courseGrid(){
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "Best course for IT and Engineering",
+          item.name??"",
           maxLines: 1,
           overflow: TextOverflow.fade,
           textAlign: TextAlign.left,
@@ -248,7 +247,7 @@ Widget courseGrid(){
         ),
         SizedBox(height: 5.h,),
         Text(
-          "Best flutter course!",
+          item.description??"",
           maxLines: 1,
           overflow: TextOverflow.fade,
           textAlign: TextAlign.left,

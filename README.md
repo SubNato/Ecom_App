@@ -116,6 +116,15 @@ Usually a return statement is left out, search for that. In this case I left the
 
 
 
+New Error:
+
+
+Connection closed while receiving data, uri
+
+fix:
+
+
+
 
 - As the project builds further, more wil be added to this file to help understand, and to solve any errors anyone using/building this code may face.
 

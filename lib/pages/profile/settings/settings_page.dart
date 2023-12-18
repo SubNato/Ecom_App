@@ -2,6 +2,8 @@ import 'package:ecom_app/entities/values/constant.dart';
 import 'package:ecom_app/global.dart';
 import 'package:ecom_app/pages/application/bloc/app_blocs.dart';
 import 'package:ecom_app/pages/application/bloc/app_events.dart';
+import 'package:ecom_app/pages/home/bloc/home_page_blocs.dart';
+import 'package:ecom_app/pages/home/bloc/home_page_events.dart';
 import 'package:ecom_app/pages/profile/settings/widgets/settings_widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +24,7 @@ class SettingsPage extends StatefulWidget {
 class _SettingsPageState extends State<SettingsPage> {
   void removeUserData(){
     context.read<AppBlocs>().add(const TriggerAppEvent(0));
-
+    context.read<HomePageBlocs>().add(const HomePageDots(0));
     Global.storageService.remove(AppConstants.STORAGE_USER_TOKEN_KEY);
     Global.storageService.remove(AppConstants.STORAGE_USER_PROFILE_KEY);
     Navigator.of(context).pushNamedAndRemoveUntil(AppRoutes.SIGN_IN, (route) => false);

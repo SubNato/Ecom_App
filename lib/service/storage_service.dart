@@ -29,7 +29,7 @@ bool getIsLoggedIn(){
 }     //To retrieve string
 
 
-Future<bool> remove(String key){
+Future<bool> remove(String key) async{
     return _prefs.remove(key);
 }
 
@@ -48,3 +48,4 @@ UserItem? getUserProfile(){
   }
 
 }
+

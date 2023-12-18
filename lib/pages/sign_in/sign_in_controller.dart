@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:ecom_app/entities/entities.dart';
 import 'package:ecom_app/entities/values/constant.dart';
+import 'package:ecom_app/pages/home/home_controller.dart';
 import 'package:ecom_app/widgets/flutter_toast.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -70,8 +71,10 @@ class SignInController {
             loginRequestEntity.type = 1;
 
             print("User Exists");
-            asyncPostAllData(loginRequestEntity);
-
+            await asyncPostAllData(loginRequestEntity);
+            if(context.mounted){
+              await HomeController(context: context).init();
+            }
             //we got verified user from firebase
           }else{
             toastInfo(msg: "Currently User does not exist");
@@ -108,9 +111,12 @@ class SignInController {
     if(result.code==200){     //This is possible because the results obtained from backend are placed in an object for ease of retrieving data.
       try{                  //So if you use the objects name, you can access a specific field from that object like 'code' (which was pre-converted in other methods with 'fromJson' etc.) as used here to query or compare it using 'if' method.
         Global.storageService.setString(AppConstants.STORAGE_USER_PROFILE_KEY, jsonEncode(result.data!));     //The '!' means not null.
+        //Used for authorization, that's why it is saved.
         Global.storageService.setString(AppConstants.STORAGE_USER_TOKEN_KEY, result.data!.access_token!);
         EasyLoading.dismiss();
-        Navigator.of(context).pushNamedAndRemoveUntil("/application", (route) => false);
+        if(context.mounted){
+          Navigator.of(context).pushNamedAndRemoveUntil("/application", (route) => false);
+        }
       }catch(e){
         print("Saving local storage error ${e.toString()}");
       }
