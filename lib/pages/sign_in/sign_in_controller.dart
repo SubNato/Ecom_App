@@ -111,6 +111,7 @@ class SignInController {
     if(result.code==200){     //This is possible because the results obtained from backend are placed in an object for ease of retrieving data.
       try{                  //So if you use the objects name, you can access a specific field from that object like 'code' (which was pre-converted in other methods with 'fromJson' etc.) as used here to query or compare it using 'if' method.
         Global.storageService.setString(AppConstants.STORAGE_USER_PROFILE_KEY, jsonEncode(result.data!));     //The '!' means not null.
+        print("............. My token is ${result.data!.access_token!}....................");
         //Used for authorization, that's why it is saved.
         Global.storageService.setString(AppConstants.STORAGE_USER_TOKEN_KEY, result.data!.access_token!);
         EasyLoading.dismiss();

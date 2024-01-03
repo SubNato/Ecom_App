@@ -1,6 +1,7 @@
-import 'package:ecom_app/pages/course/bloc/course_detail_events.dart';
-import 'package:ecom_app/pages/course/bloc/course_detail_states.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'course_detail_events.dart';
+import 'course_detail_states.dart';
 
 class CourseDetailBloc extends Bloc<CourseDetailEvents, CourseDetailStates>{
   CourseDetailBloc():super(const CourseDetailStates()){
