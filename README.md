@@ -22,13 +22,7 @@ Thank God for everything as this was a timely build and development process, but
 
 Below I have listed some errors that I have found and dealt with to help in troubleshooting for anyone interested. God speed!
 
-
-
 dbestech tutorial part 1 : https://www.youtube.com/watch?v=fD7JL4Q5-Bk&t=2s
-
-
-
-
 
 
 
