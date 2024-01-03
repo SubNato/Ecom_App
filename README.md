@@ -3,7 +3,7 @@
 This e-commerce application through God, is one where teachers can upload courses for students to purchase. 
 This mobile application or software is developed in Android Studio using the Flutter/ Dart development tools and language respectively.
 It incorporates a Laravel backend with manually developed APIs that connects and communicates with the frontend of the mobile application.
-The database used within this project is MySQL whoch is controlled using XAMPP Control panel for ease of use.
+The database used within this project is MySQL which is controlled using XAMPP Control panel for ease of use.
 
 Within this application are different features such as:
 - A fully developed and working LogIn feature controlled by Google Firebase
