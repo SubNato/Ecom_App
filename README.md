@@ -1,7 +1,7 @@
 # ecom_app
 
 This e-commerce application through God, is one where teachers can upload courses for students to purchase. 
-This mobile application or software is developed in Android Studio using the Flutter/ Dart development tools and language respectively.
+This mobile application or software is developed in Android Studio using the Flutter/ Dart development tools and language respectively which also utilized Bloc.
 It incorporates a Laravel backend with manually developed APIs that connects and communicates with the frontend of the mobile application.
 The database used within this project is MySQL which is controlled using XAMPP Control panel for ease of use.
 
