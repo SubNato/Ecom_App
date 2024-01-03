@@ -1,10 +1,30 @@
 # ecom_app
 
-This new application, through the guidance and the grace of the Lord our God is one that is aimed to help in learning flutter, and Bloc.
-This app, is an ecommerce app that has a built in authentication system connected with Firebase Google services. (ONLY NOTABLE FEATURES CURRENTLY. MORE WILL BE ADDED SHORTLY!)
+This e-commerce application through God, is one where teachers can upload courses for students to purchase. 
+This mobile application or software is developed in Android Studio using the Flutter/ Dart development tools and language respectively.
+It incorporates a Laravel backend with manually developed APIs that connects and communicates with the frontend of the mobile application.
+The database used within this project is MySQL whoch is controlled using XAMPP Control panel for ease of use.
 
-Both the frontend, as well as the backend is manually developed, and any error that may be encountered by anyone else who would like to try to build this app themselves, I have resolved and listed below.
+Within this application are different features such as:
+- A fully developed and working LogIn feature controlled by Google Firebase
+- STRIPE Payment system feature for a secure payment system
+- Sanctum security features
+- As well as a chat feature and so much more!
 
+This is a personal project that was to developed to help in learning more about how to code in Dart programming language as well as how to use the Flutter framework!
+Everything was manually developed as I took the time to learn how it was built and the understanding behind everything that was done to boost my own knowledge on developing apps!
+
+
+In building this project, I used resources from dbestech and also followed their youtube video which expounded upon this framework. 
+A link to this is provided below.
+
+Thank God for everything as this was a timely build and development process, but I am truly truly Thankful for all the knowledge and everything gain in this project's development.
+
+Below I have listed some errors that I have found and dealt with to help in troubleshooting for anyone interested. God speed!
+
+
+
+dbestech tutorial part 1 : https://www.youtube.com/watch?v=fD7JL4Q5-Bk&t=2s
 
 
 Problems I had:
