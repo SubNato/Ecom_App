@@ -1,5 +1,5 @@
 # ecom_app
-<<<<<<< NewEcomCommits
+
 This e-commerce application through God, is one where teachers can upload courses for students to purchase. 
 This mobile application or software is developed in Android Studio using the Flutter/ Dart development tools and language respectively.
 It incorporates a Laravel backend with manually developed APIs that connects and communicates with the frontend of the mobile application.
@@ -25,18 +25,16 @@ Below I have listed some errors that I have found and dealt with to help in trou
 
 
 dbestech tutorial part 1 : https://www.youtube.com/watch?v=fD7JL4Q5-Bk&t=2s
-=======
-This new application, through the guidance and the grace of the Lord our God is one that is aimed to help in learning flutter, and Bloc.
-This app, is an ecommerce app that has a built in authentification system connected with Firebase Google services. (ONLY NOTABLE FEATURES CURRENTLY. MORE WILL BE ADDED SHORTLY!)
 
-Both the frontend, as well as the backend is manually developed, and any error that may be encountered by anyone else who would like to try to build this app themselves, I have resolved and listed below.
 
->>>>>>> main
+
+
+
+
 
 
 Problems I had:
 
-<<<<<<< NewEcomCommits
 New Error: 
 
 
@@ -52,19 +50,17 @@ New Error:
 
 Error received:          (This was the main issue faced with the authentication system. Praise God it was fixed. It took a while)
 " Build file 'C:' line: 19
-=======
+
 - Gradle needed to be updated for Firebase Google Service to work.
 - Gradle PLUGINS needed to be updated for the Firebase Google Services to work.
 
 - Multidex needed to be enabled.
     * I solved that error by enabling the multidex, and such can be found in the **app level** gradle file in this project:
       multiDexEnabled = true          This could also be written as           multiDexEnabled true
->>>>>>> main
 
 
 -Dealing with the initial Firebase implementation, applying google services (firebase side) to the root (android) and app level gradle.
 
-<<<<<<< NewEcomCommits
 Solution:
 
 Gradle needed to be updated for Google Service to work.
@@ -133,7 +129,7 @@ What helped, praise be to God, was to downgrade the **GRADLE PLUGINS** and **NOT
 Manually I tried from the file tab on the main ribbon, but I could not find it. I went into the app level gradle file, and a pop-up came up in the form of a 'ribbon', and it said 'open for editing in android studio'. I clicked that option and in there, sometimes an option comes up similar to what was mentioned before prompting another edit.
 The shortcut it would give/show is to use, 'ctrl+alt+shift+s' to open the project structure showing the gradle plugin that is being used. From there, you can upgrade and downgrade as you please. Also, in this new window if you use the file then project structure it works as well. However, in the main project that method of 'file then project structure' does not show the GRADLE PLUGINS needed to be changed.
 In this case DOWNGRADE to the 7.4.2 option and the error is solved.
-=======
+
   Error received:          (This was the main issue faced with the authentication system. Praise God it was fixed. It took a while)
   " Build file 'C:' line: 19
   
@@ -162,7 +158,7 @@ In this case DOWNGRADE to the 7.4.2 option and the error is solved.
   
   SEE: https://youtu.be/w5WLVTeSGg0?si=ARq5j6uCz7ibHdLM        For more. I used it for some context as it showed his code then how he 
   fixed the error. You have to pay close attention though to match/ find what resembles your own code.
->>>>>>> main
+
 
 FYI, sorry for the lengthy fix. It took me a while to solve it, and this is a summary of what transpired! Later for now.
 
@@ -194,31 +190,14 @@ Hope this helps!
 
 
 TO NOTE:
-<<<<<<< NewEcomCommits
+
 - 'pod install' did not work? Maybe run the ios emulator first then run pod install on terminal. So download, or get the ios phone emulator and run the app on it, then use pod install to see if it works.
-=======
+
 - 'pod install' did not work!
->>>>>>> main
+
 
 
 LOG 1: Remember in the gradle.wrapper.properties, it was 'gradle-8.3-all.zip', '- all  not - bin'
-
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-
-
-
 
 
 
