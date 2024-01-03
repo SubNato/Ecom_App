@@ -34,9 +34,9 @@ class LoginRequestEntity {
   };
 }
 //api post response msg
-class UserLoginResponseEntity {
-  int? code;
-  String? msg;
+class UserLoginResponseEntity {     //This frontend has to match the Json
+  int? code;                          //in the backend structure wise, and not code wise.
+  String? msg;                           //See the difference and similarities(Like the literal naming of the variables.)
   UserItem? data;
 
   UserLoginResponseEntity({
@@ -46,10 +46,10 @@ class UserLoginResponseEntity {
   });
 
   factory UserLoginResponseEntity.fromJson(Map<String, dynamic> json) =>
-      UserLoginResponseEntity(
-        code: json["code"],
-        msg: json["msg"],
-        data: UserItem.fromJson(json["data"]),
+      UserLoginResponseEntity(      //So the '.fromJson' is really important as you take the info from backend in teh Json format needed for formatting.
+        code: json["code"],        //Then we match the data as it comes in from backend using 'Json' method to accept the data.
+        msg: json["msg"],         //Literally mapping them. If they don't match you may get an error. As we save them in that format so the code understands.
+        data: UserItem.fromJson(json["data"]),  //So the names MUST MATCH in HERE/THIS METHOD as it is named in the BACKEND (See 'UserController.php' for the matching in this instance).
       );
 }
 
