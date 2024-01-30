@@ -4,6 +4,8 @@ import 'package:ecom_app/pages/application/application_page.dart';
 import 'package:ecom_app/pages/application/bloc/app_blocs.dart';
 import 'package:ecom_app/pages/course/course_detail/bloc/course_detail_blocs.dart';
 import 'package:ecom_app/pages/course/course_detail/course_detail.dart';
+import 'package:ecom_app/pages/course/lesson/bloc/lesson_blocs.dart';
+import 'package:ecom_app/pages/course/paywebview/bloc/payview_blocs.dart';
 import 'package:ecom_app/pages/home/bloc/home_page_blocs.dart';
 import 'package:ecom_app/pages/home/home_page.dart';
 import 'package:ecom_app/pages/profile/settings/bloc/settings_blocs.dart';
@@ -19,6 +21,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../global.dart';
+import '../pages/course/lesson/lesson_detail.dart';
+import '../pages/course/paywebview/paywebview.dart';
 import 'names.dart';
 
 
@@ -60,6 +64,18 @@ class AppPages{
           page: const CourseDetail(),
           bloc: BlocProvider(create: (_)=>CourseDetailBloc(),)
       ),
+      PageEntity(
+          route: AppRoutes.LESSON_DETAIL,
+          page: const LessonDetail(),
+          bloc: BlocProvider(create: (_)=>LessonBlocs(),)
+      ),
+
+      PageEntity(
+          route: AppRoutes.PAY_WEB_VIEW,
+          page: const PayWebView(),
+          bloc: BlocProvider(create: (_)=>PayWebViewBlocs(),)
+      ),
+
     ];
   }
 

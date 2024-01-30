@@ -1,13 +1,21 @@
 import 'package:ecom_app/entities/course.dart';
+import 'package:ecom_app/entities/entities.dart';
 
 class CourseDetailStates{
-  const CourseDetailStates({this.courseItem});
+  const CourseDetailStates({
+    this.courseItem,
+    this.lessonItem = const <LessonItem>[],
+  });
 
   final CourseItem? courseItem;
+  final List<LessonItem> lessonItem;
 
-  CourseDetailStates copyWith({CourseItem? courseItem}){
+  CourseDetailStates copyWith({CourseItem? courseItem,
+  List<LessonItem>? lessonItem
+  }){
     return CourseDetailStates(
-      courseItem: courseItem??this.courseItem
+      courseItem: courseItem??this.courseItem,
+      lessonItem: lessonItem??this.lessonItem
     );
   }
 }

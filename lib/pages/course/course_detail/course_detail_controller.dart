@@ -1,5 +1,7 @@
 import 'package:ecom_app/apis/course_api.dart';
+import 'package:ecom_app/apis/lesson_api.dart';
 import 'package:ecom_app/entities/course.dart';
+import 'package:ecom_app/entities/entities.dart';
 import 'package:ecom_app/pages/course/course_detail/bloc/course_detail_blocs.dart';
 import 'package:ecom_app/pages/course/course_detail/bloc/course_detail_events.dart';
 import 'package:ecom_app/widgets/flutter_toast.dart';
@@ -8,6 +10,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
+import '../../../routes/names.dart';
+
 class CourseDetailController{
   final BuildContext context;
 
@@ -15,10 +19,11 @@ class CourseDetailController{
 
   void init() async{
     final args = ModalRoute.of(context)!.settings.arguments as Map;
-    asyncLoadAllData(args["id"]);
+    asyncLoadCourseData(args["id"]);
+    asyncLoadLessonData(args["id"]);
   }
 
-  asyncLoadAllData(int? id)async{
+  asyncLoadCourseData(int? id)async{
     CourseRequestEntity courseRequestEntity = CourseRequestEntity();
     courseRequestEntity.id = id;
     var result = await CourseAPI.courseDetail(params: courseRequestEntity);
@@ -32,10 +37,31 @@ class CourseDetailController{
       }
 
     }else{
-      toastInfo(msg: "Something went wrong");
+      toastInfo(msg: "Something went wrong, check the log in your Laravel.log file!");
       print("--------------------Error Code ${result.code}---------------");
     }
   }
+
+  asyncLoadLessonData(int? id) async {
+    LessonRequestEntity lessonRequestEntity = LessonRequestEntity();
+    lessonRequestEntity.id = id;
+    var result = await LessonAPI.lessonList(params:lessonRequestEntity);
+    //print('--------- My Lesson Data ${result.data?.length.toString()}-----------');
+    if(result.code == 200){
+      if(context.mounted){
+        context.read<CourseDetailBloc>().add(TriggerLessonList(result.data!));
+        print('My lesson data is ${result.data![0].name}');    //[0], because it is a list. Access the first index then the other properties of the list.
+      }else{
+        print("----- Context is not ready------");
+      }
+    }else{
+      toastInfo(msg: "Something went wrong, check the log!");
+    }
+
+  }
+
+
+
 
   Future<void> goBuy(int? id) async {
     print("--------- Course ID is ${id}--------");
@@ -51,10 +77,17 @@ class CourseDetailController{
     if(result.code == 200){
       //This gives you a cleaner format of URL!
       var url = Uri.decodeFull(result.data!);
-      print("----- My returned STRIPE URL is ${result.data!}-------");
-      print("----- My returned STRIPE URL is $url-------");
+      //To make it a variable.
+      var res = await Navigator.of(context).pushNamed(AppRoutes.PAY_WEB_VIEW, arguments: {     //This pushes the page to the screen that you want. As a next page. So you would return here after/if you 'pop' the stack or page.
+        "url":url
+      });
+
+      if(res == "success"){
+        toastInfo(msg: result.msg!);
+      }
+      //print("----- My returned STRIPE URL is $url-------");
     }else{
-      print("----- Failed Payment------");
+      toastInfo(msg: result.msg!);
     }
   }
 }

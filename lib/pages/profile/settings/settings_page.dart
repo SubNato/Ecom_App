@@ -11,6 +11,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../routes/names.dart';
+import '../../../widgets/base_text_widget.dart';
 import 'bloc/settings_blocs.dart';
 import 'bloc/settings_states.dart';
 
@@ -34,7 +35,7 @@ class _SettingsPageState extends State<SettingsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: buildAppBar(),
+      appBar: buildAppBar("Settings"),
       body: SingleChildScrollView(
         child: BlocBuilder<SettingsBlocs, SettingStates>(
             builder: (context, state){

@@ -13,6 +13,10 @@ class AppRoutes{
   static const SETTINGS = "/settings";
   //Showing course detail
   static const COURSE_DETAIL = "/course_detail";
+  //show lesson detail with video player
+  static const LESSON_DETAIL = "/lesson_detail";
+  //Pay web view
+  static const PAY_WEB_VIEW = "/pay_web_view";
 }
 
 //Make sure the naming convention above is followed all across the codes. As if it is NOT as shown above, you will get an invalid route.

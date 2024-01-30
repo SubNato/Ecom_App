@@ -48,7 +48,7 @@ class _CourseDetailState extends State<CourseDetail> {
             child: SafeArea(
               child: Scaffold(
                 backgroundColor: Colors.white,
-                appBar: buildAppBar(),
+                appBar: buildAppBar("Course Detail"),
                 body: SingleChildScrollView(
                   child: Column(
                     children: [
@@ -86,7 +86,7 @@ class _CourseDetailState extends State<CourseDetail> {
                             reusableText("Lesson List"),
                             SizedBox(height: 20.h,),
                             //Course Lesson List
-                            courseLessonList(),
+                            courseLessonList(state),
 
                           ],
                         ),
