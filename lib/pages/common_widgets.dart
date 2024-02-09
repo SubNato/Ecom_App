@@ -1,6 +1,8 @@
 import 'package:ecom_app/entities/values/colors.dart';
+import 'package:ecom_app/pages/sign_in/sign_in_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:firebase_ui_auth/firebase_ui_auth.dart' as fui;     //Here you name it so you can call it back I suppose.
 
 AppBar buildAppBar( String type){
   return AppBar(
@@ -33,18 +35,18 @@ Widget buildThirdPartyLogin(BuildContext context){
     child:Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        _reusableIcons("google"),
-        _reusableIcons("apple"),
-        _reusableIcons("facebook")
+        _reusableIcons("google", context),
+        _reusableIcons("apple", context),
+        _reusableIcons("facebook", context)
       ],
     ),
   );
 }
 
-Widget _reusableIcons(String iconName){         //Underscore lets it be private to its class.
+Widget _reusableIcons(String iconName, BuildContext context){         //Underscore lets it be private to its class.
   return GestureDetector(     //In order to make the buttons clickable.
     onTap: (){         //What happens after the button is pressed!
-
+      SignInController(context: context).handleSignIn("google");
     },
     child: SizedBox(
       width: 40.w,
@@ -136,14 +138,14 @@ Widget buildTextField(String hintText, String textType, String iconName,
   );
 }
 
-Widget forgotPassword(){
+Widget forgotPassword({required BuildContext context}){
   return Container(
     margin: EdgeInsets.only(left: 25.w),
     width: 260.w,
     height: 44.h,
     child: GestureDetector(
       onTap: (){
-
+        fui.showForgotPasswordScreen(context: context);
       },
       child: Text(
         "Forgot Password",

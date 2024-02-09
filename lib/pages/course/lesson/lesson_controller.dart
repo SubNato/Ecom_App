@@ -29,7 +29,7 @@ class LessonController {
         if(result.data!.isNotEmpty){
           var url = result.data!.elementAt(0).url;
           //This url is important for init (initialization) video player.
-          videoPlayerController = VideoPlayerController.networkUrl(url! as Uri);
+          videoPlayerController = VideoPlayerController.networkUrl(Uri.parse(url!));     //To parse the URL so that it works with teh 'networkUrl' function!
           //Here actually stream starts to happen.
           var initPlayer = videoPlayerController?.initialize();
           context.read<LessonBlocs>().add(TriggerUrlItem(initPlayer));
@@ -38,4 +38,25 @@ class LessonController {
     }
 
   }
+
+  void playVideo(String url){
+    if(videoPlayerController!=null){
+      videoPlayerController?.pause();
+      videoPlayerController?.dispose();  //Do these two to prevent any memory leakage if the video player exists. Pause it and dispose it.
+    }
+    videoPlayerController = VideoPlayerController.networkUrl( Uri.parse(url) );     //You have to parse the Url to get it to work with the networkUrl function in all circumstances.
+    context.read<LessonBlocs>().add(const TriggerPlay(false));
+    context.read<LessonBlocs>().add(const TriggerUrlItem(null));
+    var initPlayer =
+        videoPlayerController?.initialize().then((value){
+          videoPlayerController?.seekTo(const Duration(milliseconds: 0));
+        });
+    context.read<LessonBlocs>().add(TriggerUrlItem(initPlayer));
+    context.read<LessonBlocs>().add(const TriggerPlay(true));
+    videoPlayerController?.play();
+  }
+
 }
+
+
+//Remember that your domainname in the future must have "Https" to work, a secure browser or else it just might not work.

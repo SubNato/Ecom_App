@@ -1,8 +1,7 @@
-import 'package:ecom_app/entities/values/colors.dart';
 import 'package:ecom_app/pages/course/course_detail/bloc/course_detail_blocs.dart';
 import 'package:ecom_app/pages/course/course_detail/bloc/course_detail_states.dart';
 import 'package:ecom_app/pages/course/course_detail/course_detail_controller.dart';
-import 'package:ecom_app/pages/course/widgets/course_detail_widgets.dart';
+import 'package:ecom_app/pages/course/course_detail/widgets/course_detail_widgets.dart';
 import 'package:ecom_app/widgets/base_text_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

@@ -7,6 +7,7 @@ class LessonBlocs extends Bloc<LessonEvents, LessonStates>{
     on<TriggerLessonVideo>(_triggerLessonVideo);
     on<TriggerUrlItem>(_triggerUrlItem);
     on<TriggerPlay>(_triggerPlay);
+    on<TriggerVideoIndex>(_triggerVideoIndex);
   }
   void _triggerLessonVideo(TriggerLessonVideo event, Emitter<LessonStates>emit){
     emit(state.copyWith(lessonVideoItem: event.lessonVideoItem));
@@ -16,5 +17,8 @@ class LessonBlocs extends Bloc<LessonEvents, LessonStates>{
   }
   void _triggerPlay(TriggerPlay event, Emitter<LessonStates>emit){
     emit(state.copyWith(isPlay: event.isPlay));
+  }
+  void _triggerVideoIndex(TriggerVideoIndex event, Emitter<LessonStates>emit){
+    emit(state.copyWith(videoIndex: event.videoIndex));
   }
 }

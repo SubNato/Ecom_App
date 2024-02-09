@@ -9,6 +9,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 import '../../apis/user_api.dart';
 import '../../global.dart';
@@ -17,7 +18,8 @@ import 'bloc/sign_in_blocs.dart';
 class SignInController {
   final BuildContext context;
 
-  const SignInController({required this.context});
+  SignInController({required this.context});
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
 
   Future<void> handleSignIn(String type) async {
     try {
@@ -81,6 +83,56 @@ class SignInController {
             return;
             //Error getting user form firebase.
           }
+
+        } on FirebaseAuthException catch (e) {
+          if (e.code == 'user-not-found') {
+            print("No user found for that email");
+            toastInfo(msg: "No user found for that email .");
+          } else if (e.code == 'wrong-password') {
+            print("Wrong password provided");
+            toastInfo(msg: "Wrong password provided for that user.");
+          }else if (e.code == 'invalid-email'){
+            print("Invalid email detected");
+            toastInfo(msg: "Invalid email detected");
+          }else{    //NewOne
+            print("Something is wrong!");
+            toastInfo(msg: "Invalid Log in credentials");
+          }
+        }
+      }
+      if (type == "google") {
+
+        try {
+          //Network issues should be in a try catch clause, just in case something goes wrong it does not crash your system!
+          final user = await _googleSignIn.signIn();
+          if(user==null){
+
+            toastInfo(msg: "User does not exist");
+            return;
+          }
+
+
+
+            String? displayName = user.displayName;
+            String? email = user.email;
+            String? id = user.id;
+            String? photoUrl = user.photoUrl??"${AppConstants.SERVER_API_URL}uploads/default.png";
+
+            LoginRequestEntity loginRequestEntity = LoginRequestEntity();
+            loginRequestEntity.avatar = photoUrl;
+            loginRequestEntity.name = displayName;
+            loginRequestEntity.email = email;
+            loginRequestEntity.open_id = id;
+            //Type 1 means email login.
+            loginRequestEntity.type = 2;
+
+            print("User Exists");
+            await asyncPostAllData(loginRequestEntity);
+            if(context.mounted){
+              await HomeController(context: context).init();
+            }
+            //we got verified user from firebase
+
 
         } on FirebaseAuthException catch (e) {
           if (e.code == 'user-not-found') {

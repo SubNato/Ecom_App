@@ -5,7 +5,7 @@ import 'package:ecom_app/widgets/base_text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../entities/values/colors.dart';
+import '../../../../entities/values/colors.dart';
 
 
 
@@ -188,7 +188,7 @@ Widget courseLessonList(CourseDetailStates state) {
                         borderRadius: BorderRadius.circular(15.h),
                         image: DecorationImage(
                             fit: BoxFit.fitHeight,
-                            image: NetworkImage(state.lessonItem[index].thumbnail!))),
+                            image: NetworkImage("${AppConstants.SERVER_API_URL}${state.lessonItem[index].thumbnail!}"))),
                   ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
