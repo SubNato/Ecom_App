@@ -5,9 +5,12 @@ import 'package:ecom_app/pages/application/bloc/app_blocs.dart';
 import 'package:ecom_app/pages/course/course_detail/bloc/course_detail_blocs.dart';
 import 'package:ecom_app/pages/course/course_detail/course_detail.dart';
 import 'package:ecom_app/pages/course/lesson/bloc/lesson_blocs.dart';
+import 'package:ecom_app/pages/course/my_courses/bloc/my_courses_blocs.dart';
 import 'package:ecom_app/pages/course/paywebview/bloc/payview_blocs.dart';
 import 'package:ecom_app/pages/home/bloc/home_page_blocs.dart';
 import 'package:ecom_app/pages/home/home_page.dart';
+import 'package:ecom_app/pages/profile/bloc/profile_blocs.dart';
+import 'package:ecom_app/pages/profile/profile.dart';
 import 'package:ecom_app/pages/profile/settings/bloc/settings_blocs.dart';
 import 'package:ecom_app/pages/profile/settings/settings_page.dart';
 import 'package:ecom_app/pages/register/bloc/register_blocs.dart';
@@ -22,6 +25,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../global.dart';
 import '../pages/course/lesson/lesson_detail.dart';
+import '../pages/course/my_courses/my_courses.dart';
 import '../pages/course/paywebview/paywebview.dart';
 import 'names.dart';
 
@@ -74,6 +78,18 @@ class AppPages{
           route: AppRoutes.PAY_WEB_VIEW,
           page: const PayWebView(),
           bloc: BlocProvider(create: (_)=>PayWebViewBlocs(),)
+      ),
+
+      PageEntity(
+          route: AppRoutes.PROFILE,
+          page: const ProfilePage(),
+          bloc: BlocProvider(create: (_)=>ProfileBlocs(),)
+      ),
+
+      PageEntity(
+          route: AppRoutes.MY_COURSES,
+          page: const MyCourses(),
+          bloc: BlocProvider(create: (_)=>MyCoursesBlocs(),)
       ),
 
     ];
