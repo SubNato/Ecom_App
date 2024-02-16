@@ -1,12 +1,10 @@
 import 'dart:convert';
 
-import 'package:ecom_app/entities/values/colors.dart';
 import 'package:ecom_app/global.dart';
 import 'package:ecom_app/pages/profile/bloc/profile_blocs.dart';
 import 'package:ecom_app/pages/profile/bloc/profile_events.dart';
 import 'package:ecom_app/pages/profile/bloc/profile_states.dart';
 import 'package:ecom_app/pages/profile/widgets/profile_widgets.dart';
-import 'package:ecom_app/widgets/base_text_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

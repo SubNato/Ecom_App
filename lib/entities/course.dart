@@ -166,6 +166,7 @@ class CourseItem {
   //int? follow;
   //int? score;
   int? id;
+  int? status;
 
   CourseItem({
     this.user_token,
@@ -181,6 +182,7 @@ class CourseItem {
     //this.follow,
     //this.score,
     this.id,
+    this.status,
   });
 
   factory CourseItem.fromJson(Map<String, dynamic> json) =>
@@ -198,6 +200,7 @@ class CourseItem {
         //follow: json["follow"],
         //score: json["score"],
         id: json["id"],
+        status: json["status"]??0,
       );
 
   Map<String, dynamic> toJson() => {

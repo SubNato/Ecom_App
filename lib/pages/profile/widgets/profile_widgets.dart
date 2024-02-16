@@ -65,7 +65,13 @@ Widget buildListView(BuildContext context) {
       ...List.generate(
         imagesInfo.length,
         (index) => GestureDetector(
-          onTap: () => Navigator.of(context).pushNamed(AppRoutes.SETTINGS),
+          onTap: (){
+            if(index==0){
+              Navigator.of(context).pushNamed(AppRoutes.SETTINGS);
+            }else if(index==1){
+              Navigator.of(context).pushNamed(AppRoutes.PAYMENT_DETAILS);
+            }
+          },
           // ()=> is the same as (){ }.
           child: Container(
             margin: EdgeInsets.only(bottom: 15.h),
@@ -107,7 +113,9 @@ Widget buildRowView(BuildContext context) {
         _rowView("profile_video.png", "My Courses", () {
           Navigator.of(context).pushNamed(AppRoutes.MY_COURSES);
         }),
-        _rowView("profile_book.png", "Buy Courses", () {}),
+        _rowView("profile_book.png", "Bought", () {
+          Navigator.of(context).pushNamed(AppRoutes.BUY_COURSES);
+        }),
         _rowView("profile_star.png", "4.9", () {}),
       ],
     ),

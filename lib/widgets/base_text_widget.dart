@@ -19,3 +19,21 @@ AppBar buildAppBar(String url) {
     title: Center(child: reusableText(url)),
   );
 }
+
+Widget listItemContainer(
+    String name,
+    {double fontSize = 13,
+      Color color = AppColors.primaryText,
+      fontWeight = FontWeight.bold}) {
+  return Container(
+    width: 180.w,
+    margin: EdgeInsets.only(left: 6.w),
+    child: Text(
+      name,
+      overflow: TextOverflow.clip,
+      maxLines: 1,
+      style: TextStyle(
+          color: color, fontSize: fontSize.sp, fontWeight: FontWeight.bold),
+    ),
+  );
+}

@@ -5,8 +5,17 @@ abstract class MyCoursesEvents {
   const MyCoursesEvents();
 }
 
+
+class TriggerInitialMyCoursesEvents extends MyCoursesEvents{
+  const TriggerInitialMyCoursesEvents();
+}
+
 class TriggerLoadingMyCoursesEvents extends MyCoursesEvents{
   const TriggerLoadingMyCoursesEvents();
+}
+
+class TriggerDoneLoadingMyCoursesEvents extends MyCoursesEvents{
+  const TriggerDoneLoadingMyCoursesEvents();
 }
 
 class TriggerLoadedMyCoursesEvents extends MyCoursesEvents{

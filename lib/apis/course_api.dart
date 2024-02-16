@@ -10,6 +10,14 @@ class CourseAPI{
 
     return CourseListResponseEntity.fromJson(response);
   }
+
+  static Future<CourseListResponseEntity> coursesBought() async {
+    var response = await HttpUtil().post(
+        'api/coursesBought'
+    );
+    return CourseListResponseEntity.fromJson(response);
+  }
+
   static Future<CourseDetailResponseEntity> courseDetail({CourseRequestEntity? params}) async {
     var response = await HttpUtil().post(
         'api/courseDetail',
@@ -29,4 +37,12 @@ class CourseAPI{
 
     return BaseResponseEntity.fromJson(response);
   }
+
+  static Future<CourseListResponseEntity> orderList() async {
+    var response = await HttpUtil().post(
+        'api/orderList'
+    );
+    return CourseListResponseEntity.fromJson(response);
+  }
+
 }

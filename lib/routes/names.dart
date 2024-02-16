@@ -21,6 +21,10 @@ class AppRoutes{
   static const PROFILE = "/profile";
   //View my courses page
   static const MY_COURSES = "/my_courses";
+  //View buy courses page
+  static const BUY_COURSES = "/buy_courses";
+  //View payment history
+  static const PAYMENT_DETAILS = "/payment_details";
 
 }
 
