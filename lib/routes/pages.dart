@@ -2,6 +2,8 @@
 
 import 'package:ecom_app/pages/application/application_page.dart';
 import 'package:ecom_app/pages/application/bloc/app_blocs.dart';
+import 'package:ecom_app/pages/course/contributor/contributor.dart';
+import 'package:ecom_app/pages/course/contributor/cubit/contributor_cubits.dart';
 import 'package:ecom_app/pages/course/course_detail/bloc/course_detail_blocs.dart';
 import 'package:ecom_app/pages/course/course_detail/course_detail.dart';
 import 'package:ecom_app/pages/course/lesson/bloc/lesson_blocs.dart';
@@ -106,6 +108,12 @@ class AppPages{
           route: AppRoutes.PAYMENT_DETAILS,
           page: const PaymentDetails(),
           bloc: BlocProvider(create: (_)=>PaymentDetailCubits(),)
+      ),
+
+      PageEntity(
+          route: AppRoutes.CONTRIBUTOR,
+          page: const Contributor(),
+          bloc: BlocProvider(create: (_)=>ContributorCubits(),)
       ),
 
     ];

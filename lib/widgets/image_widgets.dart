@@ -1,0 +1,45 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+Widget cachedNetworkImage(        //It basically takes the image from the database and uses it in the app. If it does not find any, it uses the default image from the backend or database that was specified. Helps in getting stuff from the backend.
+    String networkImage,{
+    double? width = 60,
+    double? height = 60,
+    String? defaultImage,
+    Widget? child}) {
+  return CachedNetworkImage(
+    imageUrl: networkImage,
+    imageBuilder: (context, imageProvider) => Container(
+      width: width!,
+      height: height!,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20.w),
+        image: DecorationImage(
+          //image size fill
+          image: imageProvider,
+          fit: BoxFit.fitHeight,
+        ),
+      ),
+      child: child??const SizedBox(),
+    ),
+    placeholder: (context, url) => Container(
+      alignment: Alignment.center,
+      child:
+          CircularProgressIndicator(), // you can add pre loader iamge as well to show loading.
+    ), //show progress  while loading image
+    errorWidget: (context, url, error) => Container(
+      width: 80.w,
+      height: 80.h,
+      decoration: BoxDecoration(
+        color: Colors.grey.withOpacity(0.5),
+          borderRadius: BorderRadius.circular(20.w),
+          image: DecorationImage(
+              //fit: BoxFit.fitHeight,
+              image:
+              AssetImage(defaultImage!))),
+    ),
+    //show no image available image on error loading
+  );
+}

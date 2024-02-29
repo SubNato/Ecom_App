@@ -25,6 +25,8 @@ class AppRoutes{
   static const BUY_COURSES = "/buy_courses";
   //View payment history
   static const PAYMENT_DETAILS = "/payment_details";
+  //View contributor page
+  static const CONTRIBUTOR = "/contributor";
 
 }
 

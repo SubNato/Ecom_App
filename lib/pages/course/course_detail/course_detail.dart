@@ -60,7 +60,7 @@ class _CourseDetailState extends State<CourseDetail> {
                             thumbnail(state.courseItem!.thumbnail.toString()),
                             SizedBox(height: 15.h,),
                             //Three buttons or menus
-                            menuView(),
+                            menuView(context, state),
                             SizedBox(height: 15.h,),
                             //Course Description title
                             reusableText("Course Description"),

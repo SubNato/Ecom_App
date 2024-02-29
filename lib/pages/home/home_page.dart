@@ -11,6 +11,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../entities/user.dart';
 import '../../entities/values/colors.dart';
 import '../../routes/names.dart';
+import '../../widgets/base_text_widget.dart' as reuse;
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -73,7 +74,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                     SliverPadding(padding: EdgeInsets.only(top: 20.h)),
                     SliverToBoxAdapter(
-                      child: searchView(),
+                      child: reuse.searchView(context, 'Search Your Courses'),
                     ),
                     SliverToBoxAdapter(
                       child: slidersView(context, state),

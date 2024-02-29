@@ -2,6 +2,7 @@ import 'package:ecom_app/entities/values/constant.dart';
 import 'package:ecom_app/pages/course/course_detail/bloc/course_detail_states.dart';
 import 'package:ecom_app/routes/names.dart';
 import 'package:ecom_app/widgets/base_text_widget.dart';
+import 'package:ecom_app/widgets/flutter_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -21,13 +22,21 @@ Widget thumbnail(String thumbnail) {
   );
 }
 
-Widget menuView() {
+Widget menuView(BuildContext context, CourseDetailStates state) {
   return SizedBox(
     width: 325.w,
     child: Row(
       children: [
         GestureDetector(
-          onTap: () {},
+          onTap: () {
+            Navigator.of(context).pushNamed(AppRoutes.CONTRIBUTOR,
+            //This token to verify the person's identity to whom you are talking to in chat.
+                //This is the course creator's token.
+            arguments: {
+              "token": state.courseItem!.user_token
+            }
+            );
+          },
           child: Container(
             padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 5.h),
             decoration: BoxDecoration(
@@ -171,9 +180,13 @@ Widget courseLessonList(CourseDetailStates state) {
             ]),
         child: InkWell(
           onTap: () {
-            Navigator.of(context).pushNamed(AppRoutes.LESSON_DETAIL, arguments: {
-              "id":state.lessonItem[index].id
-            });
+            if(state.checkBuy == true){
+              Navigator.of(context).pushNamed(AppRoutes.LESSON_DETAIL, arguments: {
+                "id":state.lessonItem[index].id
+              });
+            }else{
+              toastInfo(msg: "Please buy this course to view");
+            }
           },
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -187,7 +200,7 @@ Widget courseLessonList(CourseDetailStates state) {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15.h),
                         image: DecorationImage(
-                            fit: BoxFit.fitHeight,
+                            fit: BoxFit.fitHeight,     //Maybe just state.lessonItem[index].thumbnail! could work below?.
                             image: NetworkImage("${AppConstants.SERVER_API_URL}${state.lessonItem[index].thumbnail!}"))),
                   ),
                   Column(

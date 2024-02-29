@@ -21,6 +21,7 @@ class CourseDetailController{
     final args = ModalRoute.of(context)!.settings.arguments as Map;
     asyncLoadCourseData(args["id"]);
     asyncLoadLessonData(args["id"]);
+    asyncLoadCourseBought(args["id"]);
   }
 
   asyncLoadCourseData(int? id)async{
@@ -50,7 +51,6 @@ class CourseDetailController{
     if(result.code == 200){
       if(context.mounted){
         context.read<CourseDetailBloc>().add(TriggerLessonList(result.data!));
-        print('My lesson data is ${result.data![0].name}');    //[0], because it is a list. Access the first index then the other properties of the list.
       }else{
         print("----- Context is not ready------");
       }
@@ -64,7 +64,7 @@ class CourseDetailController{
 
 
   Future<void> goBuy(int? id) async {
-    print("--------- Course ID is ${id}--------");
+
     EasyLoading.show(
       indicator: CircularProgressIndicator(),
       maskType: EasyLoadingMaskType.clear,
@@ -90,4 +90,23 @@ class CourseDetailController{
       toastInfo(msg: result.msg!);
     }
   }
+
+  Future<void> asyncLoadCourseBought(int? id)async {
+
+    CourseRequestEntity courseRequestEntity = CourseRequestEntity();
+    courseRequestEntity.id = id;
+    var result = await CourseAPI.courseBought(params: courseRequestEntity);
+    if(result.code == 200){
+      if(result.msg == "success"){
+        if(context.mounted){
+          context.read<CourseDetailBloc>().add(const TriggerCheckBuy(true));
+        }
+      }else{
+        if(context.mounted){
+          context.read<CourseDetailBloc>().add(const TriggerCheckBuy(false));
+        }
+      }
+    }
+  }
+
 }
