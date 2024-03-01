@@ -82,4 +82,12 @@ class CourseAPI{
     return AuthorResponseEntity.fromJson(response);
   }
 
+  static Future<CourseListResponseEntity> courseListAuthor(AuthorRequestEntity? params) async {
+    var response = await HttpUtil().post(
+        'api/courseListAuthor',
+        queryParameters: params!.toJson()
+    );
+    return CourseListResponseEntity.fromJson(response);
+  }
+
 }

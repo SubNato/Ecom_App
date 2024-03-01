@@ -37,6 +37,7 @@ class _ContributorState extends State<Contributor> {
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 20.h),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 //This container contains background image as well as the profile photo. Stacked widget
                 Container(
@@ -47,11 +48,24 @@ class _ContributorState extends State<Contributor> {
                       //Author page background
                       backgroundImage(),
                       //Author page profile photo and bio
+                      if(state.authorItem != null)
                       Positioned(           //Positioned is used to get the profile picture at a certain position in the stack. So basically it can be positioned as you like.
                           left: 0, bottom: 0, child: authorView(context, state))
+                      else
+                        Container(),
+
                     ],
                   ),
-                )
+                ),
+                SizedBox(height: 30.h,),
+                //About Me and Description
+                authorsDescription(state),
+                SizedBox(height: 20.h,),
+                //Chat button using reusable components
+                appPrimaryButton("Go Chat!"),
+                SizedBox(height: 30.h,),
+                reusableText("Author's Course List", color: AppColors.primaryText, ),
+                authorCourseList(state),
               ],
             ),
           ),

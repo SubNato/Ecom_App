@@ -13,6 +13,7 @@ class ContributorController{
   void init(){
     final args = ModalRoute.of(context)!.settings.arguments as Map;
     asyncLoadAuthorData(args['token']);
+    asyncLoadAuthorCourseData(args['token']);
   }
 
   Future<void> asyncLoadAuthorData(String token) async {
@@ -26,7 +27,19 @@ class ContributorController{
         print("My author is ${res}");
       }
     }
+  }
 
+
+  Future<void> asyncLoadAuthorCourseData(String token) async {
+    AuthorRequestEntity authorRequestEntity = AuthorRequestEntity();
+    authorRequestEntity.token = token;
+    var result = await CourseAPI.courseListAuthor(authorRequestEntity);
+    if(result.code == 200){
+      if(context.mounted){
+        context.read<ContributorCubits>().triggerCourseItemChange(result.data!);
+
+      }
+    }
   }
 
 }

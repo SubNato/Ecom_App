@@ -3,12 +3,13 @@ import 'package:ecom_app/pages/course/course_detail/bloc/course_detail_states.da
 import 'package:ecom_app/pages/course/course_detail/course_detail_controller.dart';
 import 'package:ecom_app/pages/course/course_detail/widgets/course_detail_widgets.dart';
 import 'package:ecom_app/widgets/base_text_widget.dart';
+import 'package:ecom_app/widgets/image_widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'course_detail_controller.dart';
+import '../../../entities/values/constant.dart';
 
 class CourseDetail extends StatefulWidget {
   const CourseDetail({super.key});
@@ -57,7 +58,14 @@ class _CourseDetailState extends State<CourseDetail> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             //First big image.
-                            thumbnail(state.courseItem!.thumbnail.toString()),
+                            //thumbnail(state.courseItem!.thumbnail.toString()),
+                            cachedNetworkImage(
+                                "${AppConstants.SERVER_UPLOADS}${state.courseItem!.thumbnail.toString()}",
+                                width: 325.w,
+                                height: 200.h,
+                                defaultImage: "assets/icons/image(2).png",
+                              boxFit: BoxFit.fitWidth
+                            ),
                             SizedBox(height: 15.h,),
                             //Three buttons or menus
                             menuView(context, state),
@@ -73,7 +81,7 @@ class _CourseDetailState extends State<CourseDetail> {
                               onTap: (){
                                 _courseDetailController.goBuy(state.courseItem!.id);
                               },
-                              child: buyButton("Go Buy!"),
+                              child: appPrimaryButton("Go Buy"),
                             ),
                             SizedBox(height: 20.h,),
                             //Course summary title
