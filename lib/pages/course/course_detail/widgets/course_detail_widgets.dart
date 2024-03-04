@@ -1,16 +1,14 @@
 import 'package:ecom_app/entities/values/constant.dart';
 import 'package:ecom_app/pages/course/course_detail/bloc/course_detail_states.dart';
+import 'package:ecom_app/routes/names.dart';
 import 'package:ecom_app/widgets/base_text_widget.dart';
+import 'package:ecom_app/widgets/flutter_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../entities/values/colors.dart';
+import '../../../../entities/values/colors.dart';
 
-AppBar buildAppBar() {
-  return AppBar(
-    title: Center(child: reusableText("Course detail")),
-  );
-}
+
 
 Widget thumbnail(String thumbnail) {
   return Container(
@@ -24,13 +22,21 @@ Widget thumbnail(String thumbnail) {
   );
 }
 
-Widget menuView() {
+Widget menuView(BuildContext context, CourseDetailStates state) {
   return SizedBox(
     width: 325.w,
     child: Row(
       children: [
         GestureDetector(
-          onTap: () {},
+          onTap: () {
+            Navigator.of(context).pushNamed(AppRoutes.CONTRIBUTOR,
+            //This token to verify the person's identity to whom you are talking to in chat.
+                //This is the course creator's token.
+            arguments: {
+              "token": state.courseItem!.user_token
+            }
+            );
+          },
           child: Container(
             padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 5.h),
             decoration: BoxDecoration(
@@ -77,26 +83,6 @@ Widget descriptionText(String description) {
       color: AppColors.primaryThirdElementText,
       fontWeight: FontWeight.normal,
       fontSize: 11.sp);
-}
-
-Widget buyButton(String name) {
-  return Container(
-    padding: EdgeInsets.only(top: 13.h),
-    width: 330.w,
-    height: 50.h,
-    decoration: BoxDecoration(
-        color: AppColors.primaryElement,
-        borderRadius: BorderRadius.circular(10.w),
-        border: Border.all(color: AppColors.primaryElement)),
-    child: Text(
-      name,
-      textAlign: TextAlign.center,
-      style: TextStyle(
-          color: AppColors.primaryElementText,
-          fontSize: 16.sp,
-          fontWeight: FontWeight.normal),
-    ),
-  );
 }
 
 Widget courseSummaryTitle() {
@@ -150,83 +136,83 @@ Widget courseSummaryView(BuildContext context, CourseDetailStates state) {
   );
 }
 
-Widget courseLessonList() {
-  return Container(
-    width: 325.w,
-    height: 80.h,
-    padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
-    decoration: BoxDecoration(
-        color: const Color.fromRGBO(255, 255, 255, 1),
-        borderRadius: BorderRadius.circular(10.w),
-        boxShadow: [
-          BoxShadow(
-              color: Colors.grey.withOpacity(0.1),
-              spreadRadius: 2,
-              blurRadius: 3,
-              offset: const Offset(0, 1))
-        ]),
-    child: InkWell(
-      onTap: () {},
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          //For image and the text
-          Row(
+Widget courseLessonList(CourseDetailStates state) {
+  return SingleChildScrollView(
+
+    child: ListView.builder(
+      shrinkWrap: true,
+        itemCount: state.lessonItem.length,
+        itemBuilder: (context, index){
+      return Container(
+        margin: EdgeInsets.only(top: 10.h),
+        width: 325.w,
+        height: 80.h,
+        padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
+        decoration: BoxDecoration(
+            color: const Color.fromRGBO(255, 255, 255, 1),
+            borderRadius: BorderRadius.circular(10.w),
+            boxShadow: [
+              BoxShadow(
+                  color: Colors.grey.withOpacity(0.1),
+                  spreadRadius: 2,
+                  blurRadius: 3,
+                  offset: const Offset(0, 1))
+            ]),
+        child: InkWell(
+          onTap: () {
+            if(state.checkBuy == true){
+              Navigator.of(context).pushNamed(AppRoutes.LESSON_DETAIL, arguments: {
+                "id":state.lessonItem[index].id
+              });
+            }else{
+              toastInfo(msg: "Please buy this course to view");
+            }
+          },
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Container(
-                width: 60.w,
-                height: 60.h,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15.h),
-                    image: const DecorationImage(
-                        fit: BoxFit.fill,
-                        image: AssetImage(
-                          "assets/icons/image_1.png",
-                        ))),
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
+              //For image and the text
+              Row(
                 children: [
-                  //List Item Title
-                  _listContainer(),
-                  //List Item Description
-                  _listContainer(
-                      fontSize: 10,
-                      color: AppColors.primaryThirdElementText,
-                      fontWeight: FontWeight.normal),
+                  Container(
+                    width: 60.w,
+                    height: 60.h,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15.h),
+                        image: DecorationImage(
+                            fit: BoxFit.fitHeight,     //Maybe just state.lessonItem[index].thumbnail! could work below?.
+                            image: NetworkImage("${AppConstants.SERVER_API_URL}${state.lessonItem[index].thumbnail!}"))),
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      //List Item Title
+                      listItemContainer(state.lessonItem[index].name.toString()),
+                      //List Item Description
+                      listItemContainer(
+                        state.lessonItem[index].description.toString(),
+                          fontSize: 10,
+                          color: AppColors.primaryThirdElementText,
+                          fontWeight: FontWeight.normal),
+                    ],
+                  )
                 ],
+              ),
+
+              //For showing the right arrow
+              Container(
+                child: Image(
+                  height: 24.h,
+                  width: 24.h,
+                  image: AssetImage("assets/icons/arrow_right.png"),
+                ),
               )
             ],
           ),
-
-          //For showing the right arrow
-          Container(
-            child: Image(
-              height: 24.h,
-              width: 24.h,
-              image: AssetImage("assets/icons/arrow_right.png"),
-            ),
-          )
-        ],
-      ),
-    ),
+        ),
+      );
+    }),
   );
 }
 
-Widget _listContainer(
-    {double fontSize = 13,
-    Color color = AppColors.primaryText,
-    fontWeight = FontWeight.bold}) {
-  return Container(
-    width: 200.w,
-    margin: EdgeInsets.only(left: 6.w),
-    child: Text(
-      "UI Design",
-      overflow: TextOverflow.clip,
-      maxLines: 1,
-      style: TextStyle(
-          color: color, fontSize: fontSize.sp, fontWeight: FontWeight.bold),
-    ),
-  );
-}

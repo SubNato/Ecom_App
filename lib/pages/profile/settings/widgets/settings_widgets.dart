@@ -1,18 +1,6 @@
-import 'package:ecom_app/entities/values/colors.dart';
-import 'package:ecom_app/widgets/base_text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-AppBar buildAppBar(){
-  return AppBar(
-    title:
-    Container(
-      child: Container(
-        child: reusableText("Settings"),
-      ),
-    ),
-  );
-}
 
 Widget settingsButton(BuildContext context, void Function()? func){
   return GestureDetector(

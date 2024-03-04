@@ -32,15 +32,17 @@ class HomeController{
 
         if(context.mounted){ //Makes sure that  the context is still there and is mounted.
           context.read<HomePageBlocs>().add(HomePageCourseItem(result.data!));
+          return;
         }
 
         //print(result.data![1].description);     //In Dart, they do not use Arrays, they use Lists. So '[]' denotes a list with the index of the list you want to call, similar to an array! But it is not an array.
       }else{
         print(result.code);
+        return;
       }
     }else{
       print("User has already logged out");
     }
-
+      return;
   }
 }
