@@ -62,7 +62,15 @@ class _ContributorState extends State<Contributor> {
                 authorsDescription(state),
                 SizedBox(height: 20.h,),
                 //Chat button using reusable components
-                appPrimaryButton("Go Chat!"),
+                GestureDetector(
+                    onTap: (){
+                      if(state.authorItem!=null){
+                        _contributorController.goChat(state.authorItem!);
+                      }
+                    },
+                    child: appPrimaryButton("Go Chat!")
+
+                ),
                 SizedBox(height: 30.h,),
                 reusableText("Author's Course List", color: AppColors.primaryText, ),
                 authorCourseList(state),

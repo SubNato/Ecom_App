@@ -27,6 +27,8 @@ class AppRoutes{
   static const PAYMENT_DETAILS = "/payment_details";
   //View contributor page
   static const CONTRIBUTOR = "/contributor";
+  //View chat page
+  static const CHAT = "/chat";
 
 }
 

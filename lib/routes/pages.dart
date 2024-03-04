@@ -10,6 +10,8 @@ import 'package:ecom_app/pages/course/lesson/bloc/lesson_blocs.dart';
 import 'package:ecom_app/pages/course/paywebview/bloc/payview_blocs.dart';
 import 'package:ecom_app/pages/home/bloc/home_page_blocs.dart';
 import 'package:ecom_app/pages/home/home_page.dart';
+import 'package:ecom_app/pages/messages/chat/bloc/chat_blocs.dart';
+import 'package:ecom_app/pages/messages/chat/chat.dart';
 import 'package:ecom_app/pages/profile/bloc/profile_blocs.dart';
 import 'package:ecom_app/pages/profile/payment_details/cubit/payment_detail_cubits.dart';
 import 'package:ecom_app/pages/profile/payment_details/payment_details.dart';
@@ -114,6 +116,12 @@ class AppPages{
           route: AppRoutes.CONTRIBUTOR,
           page: const Contributor(),
           bloc: BlocProvider(create: (_)=>ContributorCubits(),)
+      ),
+
+      PageEntity(
+          route: AppRoutes.CHAT,
+          page: const Chat(),
+          bloc: BlocProvider(create: (_)=>ChatBlocs(),)
       ),
 
     ];

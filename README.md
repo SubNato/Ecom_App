@@ -36,10 +36,33 @@ fix:
 
 
 
+-New Error:
+
+'AuthProvider' is imported from both 'package:firebase_auth_platform_interface/src/auth_provider.dart' and 'package:firebase_ui_auth/src/providers/auth_provider.dart'.
+import 'src/providers/auth_provider.dart';
+
+Fix:
+
+Seemingly the new updated file has similar naming conventions hence the error. So one fix could be to use aliases or another could be to update outdated dependencies or to downgrade updated dependencies. Lets see!
+
+
+Refer to here for more details to fix the error above:
+https://stackoverflow.com/questions/77468892/error-authprovider-is-imported-from-both
+
+
+New error:
+
+Could not resolve all files for configuration ':app:debugRuntimeClasspath'.
+Flutter fix was to disable Shrinker by using '--no-shrink' flag to this command.
+
+Actual fix used before trying the above method:
+In the app/build.gradle file under the 'buildtypes' subfile 'release'  we added 'minifyEnabled true'. (It is marked in the file listed in the actual app)
+
+
+
 - As the project builds further, more wil be added to this file to help understand, and to solve any errors anyone using/building this code may face.
 
 Hope this helps!
-
 
 TO NOTE:
 
