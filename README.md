@@ -58,7 +58,8 @@ Flutter fix was to disable Shrinker by using '--no-shrink' flag to this command.
 Actual fix used before trying the above method:
 In the app/build.gradle file under the 'buildtypes' subfile 'release'  we added 'minifyEnabled true'. (It is marked in the file listed in the actual app)
 
-
+Actual fix: Upgraded the minSDKVersion from 21 to 26. That has thrown an error before (Very early on in building the app), so I hesitated to. Thank God it worked out now!
+So simply upgrade your minSDKVersion from 21 to 26 or the latest version of your minSDK.
 
 - As the project builds further, more wil be added to this file to help understand, and to solve any errors anyone using/building this code may face.
 
