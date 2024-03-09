@@ -1,4 +1,6 @@
 import 'package:ecom_app/pages/home/home_page.dart';
+import 'package:ecom_app/pages/messages/message/cubit/message_cubits.dart';
+import 'package:ecom_app/pages/messages/message/message.dart';
 import 'package:ecom_app/pages/search/bloc/search_blocs.dart';
 import 'package:ecom_app/pages/search/search.dart';
 import 'package:flutter/cupertino.dart';
@@ -12,8 +14,10 @@ Widget buildPage(int index){
   List<Widget> _widget = [
     const HomePage(),
     BlocProvider<SearchBlocs>(create: (context)=>SearchBlocs(), child: const Search(),),     //This is another way of injecting your blocs for the app to use and get the states etc.
+
     Center(child: Text("Course")),
-    Center(child: Text("Chat")),
+    //Center(child: Text("Chat")),
+    BlocProvider<MessageCubits>(create: (context)=>MessageCubits(), child: Messages(),),
     //Center(child: Text("Profile")),
     const ProfilePage(),
   ];
