@@ -33,13 +33,36 @@ class ChatController {
     final data = ModalRoute.of(context)!.settings.arguments as Map;
     //This is the id between 2 users and is unique
     docId = data["doc_id"];
-    print("-- My doc ID is ${docId}--");
     //Here we want to load all the data from Google FireBase!
+    _clearMsgNum(docId);
     _chatSnapShots();
+  }
+
+  _clearMsgNum(String docId) async {
+    var messageRes = await db.collection('message').doc(docId).withConverter(
+        fromFirestore: Msg.fromFirestore, toFirestore: (Msg msg, options)=>msg.toFirestore()
+    ).get();
+    if(messageRes.data()!=null){
+      var item = messageRes.data()!;
+      int to_msg_num = item.to_msg_num==null?0:item.to_msg_num!;
+      int from_msg_num = item.from_msg_num==null?0:item.from_msg_num!;
+      if(item.from_token==userProfile?.token){   //Meaning you pulled up or have seen that person's message.
+        to_msg_num = 0;
+      }else{
+        from_msg_num = 0;
+      }
+
+      await db.collection("message").doc(docId).update({
+        "to_msg_num":to_msg_num,
+        "from_msg_num":from_msg_num
+      });
+    }
   }
 
   void dispose() {
     textEditingController.dispose();
+    appScrollController.dispose();
+    _clearMsgNum(docId);
   }
 
   Future<void> _chatSnapShots() async {

@@ -32,7 +32,7 @@ Widget buildChatList(BuildContext context, Message item, MessagesController cont
                 decoration: BoxDecoration(
                   image: DecorationImage(
                     image: NetworkImage(
-                      "${item.avatar}"
+                      "${item.avatar}"            //Here you want to see the teacher's avatar, cause you are conversing with the teacher, and not a student. So we want to see the teacher's avatar that they posted from the backend!
                     ),
                     fit: BoxFit.fitHeight,
                   ),

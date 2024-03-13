@@ -67,7 +67,11 @@ class _ChatState extends State<Chat> {
                             sliver: SliverList(
                               delegate:
                               SliverChildBuilderDelegate((context, index) {
-                                return chatWidget(state.msgcontentList[index]);
+                                var item = state.msgcontentList[index];
+                                if(_chatController.userProfile?.token == item.token){
+                                  return chatRightWidget(item);
+                                }
+                                return chatLeftWidget(item);
                               }, childCount: state.msgcontentList.length),
                             ),
                           )

@@ -61,6 +61,30 @@ In the app/build.gradle file under the 'buildtypes' subfile 'release'  we added 
 Actual fix: Upgraded the minSDKVersion from 21 to 26. That has thrown an error before (Very early on in building the app), so I hesitated to. Thank God it worked out now!
 So simply upgrade your minSDKVersion from 21 to 26 or the latest version of your minSDK.
 
+
+Not really an error, but in trying to install firestore-option in the teacher side chat page/app.
+
+I tried to run 'firebase' commands after installing firebase cli, and also Node js. for npm commands, however it did not work, mountains of errors.
+So I kept the firebase CLI files and followed instructions from here on how to install it without using DIRECT 'firebase' commands:
+https://stackoverflow.com/questions/70404936/missing-firebase-options-dart-file-in-course-get-to-know-firebase-for-flutter
+
+
+Long story short, I used 'dart pub global activate flutterfire_cli' in the android studio app's terminal, attached the well needed system variables to the SYSTEM's PATH variables, quick computer restart, then flutterfire configure worked!
+However, all in all you still need to DOWNLOAD and configure firebase_cli, for any of this to work. I recommend googling and reading up on the https://firebase.google.com/docs/cli website for more info and it also makes it 100% clear on how it works. How it runs per project, not so much.
+
+
+Firebase CLI Information:
+https://firebase.google.com/docs/cli
+
+
+
+
+
+
+CLEAR
+
+
+
 - As the project builds further, more wil be added to this file to help understand, and to solve any errors anyone using/building this code may face.
 
 Hope this helps!

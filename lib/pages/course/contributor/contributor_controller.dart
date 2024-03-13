@@ -30,6 +30,7 @@ class ContributorController {
     print('---${author.token}--');
     if (author.token == userProfile?.token) {
       toastInfo(msg: "You cannot chat to yourself");
+      return;
     }
     //You sending to someone special.
     var fromMessages =
