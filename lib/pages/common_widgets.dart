@@ -1,5 +1,6 @@
 import 'package:ecom_app/entities/values/colors.dart';
 import 'package:ecom_app/pages/sign_in/sign_in_controller.dart';
+import 'package:ecom_app/widgets/text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:firebase_ui_auth/firebase_ui_auth.dart' as fui;     //Here you name it so you can call it back I suppose.
@@ -93,7 +94,7 @@ Widget buildTextField(String hintText, String textType, String iconName,
           SizedBox(
             width: 270.w,
             height: 50.h,
-            child: TextField(
+            child: appTextField(hintText, textType, func)/*TextField(
               onChanged: (value)=>func!(value),          //To add a value to the function NAMED 'func' that is not null (!)
               keyboardType: TextInputType.multiline,
               decoration: InputDecoration(
@@ -131,7 +132,7 @@ Widget buildTextField(String hintText, String textType, String iconName,
               ),
               autocorrect: false,
               obscureText: textType == "password"?true:false,
-            ),
+            )*/,
           )
         ],
       )
