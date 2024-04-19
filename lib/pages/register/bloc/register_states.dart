@@ -23,7 +23,6 @@ class RegisterStates {
         rePassword: rePassword ?? this.rePassword);
   }
 }
-//Ameika - 1-954-652-9603     Send the thing to this lady instead of Ms. Bailey
 
 //Some things to note!
 
