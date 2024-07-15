@@ -1,7 +1,7 @@
 # ecom_app
 
-This e-commerce application through God, is one where teachers can upload courses for students to purchase. 
-This mobile application or software is developed in Android Studio using the Flutter/ Dart development tools and language respectively which also utilized Bloc.
+This mobile application allows teachers to upload courses for students to purchase. 
+Using Android Studio, this project was developed with the Flutter/ Dart development tools and language respectively which also utilized Bloc.
 It incorporates a Laravel backend with manually developed APIs that connects and communicates with the frontend of the mobile application.
 The database used within this project is MySQL which is controlled using XAMPP Control panel for ease of use.
 
@@ -15,15 +15,9 @@ This is a personal project that was to developed to help in learning more about 
 Everything was manually developed as I took the time to learn how it was built and the understanding behind everything that was done to boost my own knowledge on developing apps!
 
 
-In building this project, I used resources from dbestech and also followed their youtube video which expounded upon this framework. 
-A link to this is provided below.
-
-Thank God for everything as this was a timely build and development process, but I am truly truly Thankful for all the knowledge and everything gain in this project's development.
+In building this project, I used resources from dbestech and also other tutorials that expounded upon this framework. 
 
 Below I have listed some errors that I have found and dealt with to help in troubleshooting for anyone interested. God speed!
-
-dbestech tutorial part 1 : https://www.youtube.com/watch?v=fD7JL4Q5-Bk&t=2s
-
 
 
 
@@ -240,25 +234,6 @@ TO NOTE:
 
 
 LOG 1: Remember in the gradle.wrapper.properties, it was 'gradle-8.3-all.zip', '- all  not - bin'
-
-
-
-Key things to note when dealing with GitHub:
-
-command 'git log' is used to see all logs made in a specific github repository that you are working in.
-
-press 'Q' to EXIT out of the github log after the command above is used.
-
-command 'git checkout' 'with the id/hash' is used to jump to the previous code you committed to a specific github repository.
-Be careful using 'git checkout'!
-
-command 'git revert' is used to revert to the last commit, or a commit made previously on github after you committed another change to a specific github repository.
-
-command 'git stash' can be used to store your current work (not a commit, nor on the main branch), so that it won't get lost.
-
-THESE LISTED ABOVE can be done in both the TERMINAL and in ANDROID STUDIO GUI.
-
-
 
 
 Backend Usage:
